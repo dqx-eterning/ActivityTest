@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ThirdActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="http"></data>
+            </intent-filter>
+        </activity>
         <activity android:name=".SecondActivity">
             <intent-filter>
-                <action android:name="com.example.activitytest.ACTION_START"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
-                <category android:name="com.example.activitytest.MY_CATEGORY"></category>
+                <action android:name="com.example.activitytest.ACTION_START" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.example.activitytest.MY_CATEGORY" />
             </intent-filter>
         </activity>
         <activity
@@ -21,7 +28,6 @@
             android:label="This is firstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

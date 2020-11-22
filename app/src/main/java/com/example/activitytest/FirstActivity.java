@@ -1,10 +1,13 @@
 package com.example.activitytest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,14 +26,52 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View v) {
                /* Toast.makeText(FirstActivity.this,"you clicked button 1",Toast.LENGTH_SHORT).show();*/
 
-//                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
-//                startActivity(intent);
+                //Intent显式用法（在多个活动间切换）
+                /*  Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+                startActivity(intent);*/
 
-                Intent intent = new Intent("com.example.activitytest.ACTION_START");
+                //Intent隐式用法
+               /* Intent intent = new Intent("com.example.activitytest.ACTION_START");
                 intent.addCategory("com.example.activitytest.MY_CATEGORY");
-                startActivity(intent);
+                startActivity(intent);*/
+
+               //更多Intent用法,启动其他程序的活动
+                /*Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.baidu.com"));
+                startActivity(intent);*/
+
+
+                //启动电话
+               /* Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:10086"));
+                startActivity(intent);*/
+
+               //向下一个活动传递数据
+               /* String data = "hello secondActivity";
+                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+                intent.putExtra("extra_data",data);
+                startActivity(intent);*/
+
+                //返回数据给上一个活动
+                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+                startActivityForResult(intent,1);
             }
         });
+    }
+
+    //接受活动2返回的数据
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    String data_return = data.getStringExtra("data_return");
+                    Log.d("FirstActivity", data_return);
+                }
+                break;
+                default:
+        }
     }
 
     @Override
