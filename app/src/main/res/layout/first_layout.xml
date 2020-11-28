@@ -3,10 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <Button
         android:id="@+id/button_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button 1"></Button>
+        android:text="Button 1" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="#9999ff"
+        android:layout_gravity="center"
+        android:src="@drawable/img_1"
+        android:scaleType="fitXY"/>
+
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ListView"
+        android:layout_marginTop="20dp"/>
+
 
 </LinearLayout>

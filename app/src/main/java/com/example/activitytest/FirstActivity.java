@@ -14,10 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.activitytest.listView.ListViewActivity;
+
 public class FirstActivity extends AppCompatActivity {
 
+
+    private Button button4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        OnClick onClick = new OnClick();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_layout);
         Button button1 =(Button) findViewById(R.id.button_1);
@@ -57,20 +64,39 @@ public class FirstActivity extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
+
+        button4 = findViewById(R.id.button_4);
+        button4.setOnClickListener(onClick);
+
+    }
+
+
+    private class OnClick implements View.OnClickListener{
+        Intent intent = null;
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.button_4:
+                    intent = new Intent(FirstActivity.this, ListViewActivity.class);
+                    startActivity(intent);
+                default:
+                    break;
+            }
+        }
     }
 
     //接受活动2返回的数据
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
             case 1:
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     String data_return = data.getStringExtra("data_return");
                     Log.d("FirstActivity", data_return);
                 }
                 break;
-                default:
+            default:
         }
     }
 
